@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Sistema de Reservas de Laboratorios</title>
@@ -11,17 +11,20 @@
       margin: 40px auto;
       padding: 0 20px;
     }
+
     label {
       font-weight: bold;
       display: block;
       margin-top: 10px;
     }
+
     input {
       width: 100%;
       padding: 8px;
       margin-top: 4px;
       box-sizing: border-box;
     }
+
     button {
       margin-top: 15px;
       padding: 10px 15px;
@@ -32,24 +35,30 @@
       width: 100%;
       font-size: 16px;
     }
+
     button:hover {
       background-color: #0056b3;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 25px;
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid #ccc;
       padding: 8px;
       text-align: left;
     }
+
     th {
       background-color: #f2f2f2;
     }
   </style>
 </head>
+
 <body>
 
   <h2>Reservar Laboratorio</h2>
@@ -67,9 +76,12 @@
     <label>Horario:</label>
     <input type="text" id="hora" placeholder="Ej. 10:00 - 12:00" required>
 
+    <label>Computadoras disponibles:</label>
+    <input type="number" id="computadoras" placeholder="Ej. 15" min="0" required>
+
     <button type="submit">Guardar Reserva</button>
   </form>
-<p id="resultado" style="font-weight: bold; margin-top: 15px;"></p>
+  <p id="resultado" style="font-weight: bold; margin-top: 15px;"></p>
   <h2>Reservas Registradas</h2>
   <table>
     <thead>
@@ -89,7 +101,7 @@
     const form = document.getElementById('form-reserva');
     const tabla = document.getElementById('tabla-reservas');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
 
 
@@ -97,8 +109,10 @@
       const solicitante = document.getElementById('solicitante').value;
       const fecha = document.getElementById('fecha').value;
       const hora = document.getElementById('hora').value;
+      const fila = document.createElement('tr')
+      const estado = computadoras > 0 ? "Disponible" : "No disponible";
+      document.getElementById('resultado').textContent = `Estado del laboratorio: ${estado}`;
 
-      const fila = document.createElement('tr');
       fila.innerHTML = `
         <td>${lab}</td>
         <td>${solicitante}</td>
@@ -112,4 +126,5 @@
   </script>
 
 </body>
+
 </html>
