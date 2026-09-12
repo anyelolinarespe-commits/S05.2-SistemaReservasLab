@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Reservas de Laboratorios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Reservar Laboratorio</h2>
+
+  <form id="form-reserva">
+    <label>Laboratorio:</label>
+    <input type="text" id="lab" placeholder="Ej. Lab 1" required>
+
+    <label>Nombre:</label>
+    <input type="text" id="solicitante" placeholder="Ej. Carlos Mendoza" required>
+
+    <label>Fecha:</label>
+    <input type="date" id="fecha" required>
+
+    <label>Horario:</label>
+    <input type="text" id="hora" placeholder="Ej. 10:00 - 12:00" required>
+
+    <button type="submit">Guardar Reserva</button>
+  </form>
+
+  <h2>Reservas Registradas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Laboratorio</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Horario</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-reservas">
+      <!-- Se llenará dinámicamente -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('form-reserva');
+    const tabla = document.getElementById('tabla-reservas');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const lab = document.getElementById('lab').value;
+      const solicitante = document.getElementById('solicitante').value;
+      const fecha = document.getElementById('fecha').value;
+      const hora = document.getElementById('hora').value;
+
+      const fila = document.createElement('tr');
+      fila.innerHTML = `
+        <td>${lab}</td>
+        <td>${solicitante}</td>
+        <td>${fecha}</td>
+        <td>${hora}</td>
+      `;
+
+      tabla.appendChild(fila);
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
