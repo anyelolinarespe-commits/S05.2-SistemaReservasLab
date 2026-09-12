@@ -69,7 +69,7 @@
 
     <button type="submit">Guardar Reserva</button>
   </form>
-
+<p id="resultado" style="font-weight: bold; margin-top: 15px;"></p>
   <h2>Reservas Registradas</h2>
   <table>
     <thead>
@@ -92,6 +92,7 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
+
       const lab = document.getElementById('lab').value;
       const solicitante = document.getElementById('solicitante').value;
       const fecha = document.getElementById('fecha').value;
@@ -104,7 +105,7 @@
         <td>${fecha}</td>
         <td>${hora}</td>
       `;
-
+      document.getElementById('resultado').textContent = "Reserva guardada.";
       tabla.appendChild(fila);
       form.reset();
     });
